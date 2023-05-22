@@ -8,7 +8,7 @@
     "remote-control-server": "src/index.js"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "npm run build && node src/index.js",
     "start:server": "nodemon src/index.js -i src/client -i src/scss -i src/res",
     "start:watch": "chastifol [ npm run js:watch ] [ npm run css:watch ] [ npm run start:server ]",
     "test": "jest",
@@ -17,8 +17,7 @@
     "build": "npm run css && npm run js",
     "js": "browserify -t babelify src/client/index.js -o src/res/index.js",
     "js:watch": "watchify -d -v -t babelify src/client/index.js -o src/res/index.js",
-    "css": "node-sass src/scss/style.scss -o src/res",
-    "css:watch": "npm run css && node-sass --watch src/scss/style.scss -o src/res",
+    "css": "node src/server/scss.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "ci": "npm run lint && npm run test:coverage && npm run build"
@@ -37,7 +36,8 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "robotjs": "git+https://github.com/jeremija/robotjs.git#71bb8aa",
+    "robotjs": "^0.6.0",
+    "sass": "^1.62.1",
     "seamless-immutable": "^7.1.2",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4"
@@ -61,7 +61,6 @@
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
     "jest-cli": "^21.2.1",
-    "node-sass": "^4.7.2",
     "nodemon": "^1.12.5",
     "watchify": "^3.9.0"
   },

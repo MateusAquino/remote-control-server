@@ -14,6 +14,6 @@ app.set('views', path.join(__dirname, '../views'))
 app.use('/res', express.static(path.join(__dirname, '../res')))
 app.get('/', (req, res) => res.render('index'))
 
-io.on('connection', socket => handleSocket(socket, robot))
+io.on('connection', (socket) => handleSocket(socket, robot))
 
 module.exports = http
